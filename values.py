@@ -20,13 +20,17 @@ def category_table():
 
     session.query('youtube')
     category_list= []
+
+    category_list.append({'cat_id': 0, 'cat_desc': 'all categories'})
     with engine.connect() as con:
         records=  con.execute('select category_id, category_desc from youtube group by category_desc')
         for record in records:
             category_list.append({'cat_id':record[0], 'cat_desc': record[1]})
 
-    session.close
-    return category_list
+
+        session.close
+        # print(category_list)
+        return category_list
 
 # FUNCTION TO POPULATE FOR ALL CATEGORIES
 def values():
@@ -55,7 +59,7 @@ def values():
         engages = con.execute("select format(sum(likes + dislikes + comment_count), 2) as engagement from youtube")
         for engage in engages:
             print(engage[0])
-
+        
         ### Breakdown of Engagement metrics for bar graph
         likes = con.execute("select format(sum(likes), 2) from youtube")
         for like in likes:
@@ -67,61 +71,21 @@ def values():
         for comment in comments:
             print(comment[0])
 
+        values_dict = [{"cat_id": 0, "cat_desc": "all categories", "videos": video[0], "subscribers": sub[0], "view": view[0], "engagement": engage[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0]}]
+        # print(values_dict)
+
+        categories= con.execute('select category_id, category_desc, count(*) as videos, format(subscriber,2), \
+            format(views, 2), format(likes,2), format(dislikes,2), format(comment_count, 2),\
+            format(sum(likes + dislikes + comment_count), 2) as engagement\
+            from youtube group by category_id')
+    
     session.close
 
-    values_dict = {"videos": video[0], "subscribers": sub[0], "view": view[0], "engagement": engage[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0]}
-    print(values_dict)
+    for cat in categories:
+        values_dict.append({"cat_id": cat[0], "cat_desc": cat[1], "videos": cat[2], "subscribers": cat[3], \
+        "view": cat[4], "engagement": cat[8], "Likes": cat[5], "Dislikes": cat[6], "Comments": cat[7]})
+    
+    # print(values_dict)
     return(values_dict)
 
 
-# FUNCTION FOR WHEN A SPECIFIC CATEGORY IS PICKED
-def category_id(cat_id):
-
-    engine = create_engine(f'mysql://root:{config}@localhost:3306/youtube_db')
-
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
-
-    session.query('youtube')
-
-    with engine.connect() as con:
-
-        # category videos
-        
-        select_statement=f'SELECT count(*) FROM youtube where category_id = "{cat_id}"'
-        print(select_statement)
-        videos = con.execute(f'SELECT count(*) FROM youtube where category_id = "{cat_id}"')
-        for video in videos:
-            print(video[0])
-        # category subscriber
-        subs = con.execute(f"select format(sum(subscriber), 2) from youtube where category_id = '{cat_id}'")
-        for sub in subs:
-            print(sub[0])
-        # category views
-        views = con.execute(f"select format(sum(views), 2) from youtube where category_id = '{cat_id}'")
-        for view in views:
-            print(view[0])
-        # category engagement
-        engages = con.execute(f"select format(sum(likes + dislikes + comment_count), 2) as engagement from youtube where category_id= '{cat_id}'")
-        for engage in engages:
-            print(engage[0])
-
-        ### Breakdown of Engagement metrics for bar graph
-        likes = con.execute(f"select format(sum(likes), 2) from youtube where category_id = '{cat_id}'")
-        for like in likes:
-             print(like[0])
-        dislikes =con.execute(f"select format(sum(dislikes), 2) from youtube where category_id = '{cat_id}'")
-        for dislike in dislikes:
-             print(dislike[0])
-        comments =con.execute(f"select format(sum(comment_count), 2) from youtube where category_id = '{cat_id}'")
-        for comment in comments:
-            print(comment[0])
-
-    session.close
-
-    values_dict = {"videos": video[0], "subscribers": sub[0], "view": view[0], "engagement": engage[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0]}
-    print(values_dict)
-    return(values_dict)
-
-    
-    

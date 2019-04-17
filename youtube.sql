@@ -62,7 +62,7 @@ values
 	(23,  "Comedy"),
 	(24,  "Entertainment"),
 	(25,  "News & Politics"),
-	(26,  "Howto & Style"),
+	(26,  "How to & Style"),
 	(27,  "Education"),
 	(28, "Science & Technology"),
 	(29, "Nonprofits & Activism"),
@@ -158,3 +158,16 @@ where category_desc="Comedy";
 
 SELECT count(*) FROM youtube where category_desc = "Sports";
 
+select * from category;
+
+select category_id, category_desc, count(*) as videos, format(subscriber, 2) as subscriber, 
+format(views, 2) as views, format(likes,2) as likes, format(dislikes, 2) as dislikes, comment_count, 
+sum(likes + dislikes + comment_count) as engagement
+from youtube
+group by category_id;
+
+select count(*) as videos, sum(subscriber), 
+sum(views), sum(likes), sum(dislikes), sum(comment_count), 
+sum(likes + dislikes + comment_count) as engagement
+from youtube
+;
