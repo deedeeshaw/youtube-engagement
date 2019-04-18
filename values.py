@@ -71,7 +71,7 @@ def values():
         for comment in comments:
             print(comment[0])
 
-        values_dict = [{"cat_id": 0, "cat_desc": "all categories", "videos": video[0], "subscribers": sub[0], "view": view[0], "engagement": engage[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0]}]
+        values_dict = [{"cat_id": 0, "cat_desc": "All Categories", "videos": video[0], "subscribers": sub[0], "view": view[0], "engagement": engage[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0]}]
         # print(values_dict)
 
         categories= con.execute('select category_id, category_desc, count(*) as videos, format(subscriber,2), \
