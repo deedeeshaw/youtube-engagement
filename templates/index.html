@@ -310,13 +310,19 @@
               <!-- Illustrations -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">The DES Team Story</h6>
+                  <h3 class="m-0 font-weight-bold text-primary">The Story</h3>
                 </div>
                 <div class="card-body">
                   <div class="text-center">
                     <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="static/img/youtube.jpg" alt="youtube logo">
                   </div>
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                  <p>Our story started when we decided to determine if there is a correlation between
+                    number of youtube subscribers and how engaged they are with the videos. We defined engagement
+                    as the sum of number of likes, dislikes ann comments. We hypothesised that the number of
+                    subscribers for a category is directly correlated to the engagement for that category. While you do 
+                    not have to be a subscriber to engage with a video when people subsctibe to a video channel they
+                    receive alerts and that may lead to higher engagement.
+                  </p>
               
                 </div>
               </div>
@@ -325,15 +331,27 @@
               <!-- Approach -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">How We Got Here aka ETL</h6>
+                  <h3 class="m-0 font-weight-bold text-primary">How We Got Here aka ETL</h3>
                 </div>
                 <div class="card-body">
-                  <p>Using a dataset in csv from kaggle we exported the data into a table in MySQL. We then created another table with only the columns
-                    with pertinent information. The description of the category IDs was found in a github file and we created another table in MySQL with
-                    the category ID and category description. Using update and join we added the category description column to the youtube table. After
-                    that we dropped categories that had less than 100 videos. We ended up with 3170 rows of data that we exported to a csv file.
+                  <h5 style=font-weight:900>Extraction</h5>
+                  <p>Using a dataset in csv from kaggle we exported the data into a table in MySQL.
+                    We then created a table called "youtube" with only the columns with pertinent information
+                    to maintain the inegrity of the original table.
+                    The description of the category IDs was found in a github file and we created a "category" table
+                    in MySQL with the category ID and category description.
+                    </p>
+                  <h5 style=font-weight:900>Transformation</h5>
+                  <p>Using update and join we added the category description column to the youtube table.
+                  
+                  After that we dropped categories that had less than 100 videos.
+                  and we ended up with 3170 rows of data and nine out of 16 categories.</p>
+                  
+                  <h5 style=font-weight:900>Loading</h5>
+                  <p>The data we wanted to use was saved in the youtube table in MySQL and was imported to
+                    a csv file as well to use in constructing our table in JavaScript.
                   </p>
-                  <p class="mb-0">Load information here.</p>
+                
                 </div>
               </div>
 
