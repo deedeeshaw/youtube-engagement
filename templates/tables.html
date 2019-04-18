@@ -80,20 +80,32 @@
         <div class="form-group">
           <ul class="list-group" id="filters">
             <li class="filter list-group-item">
-              <label for="Title">Keyword Ex: dog</label>
+              <label for="Title">Views > Ex: 2000000</label>
+              <input class="form-control" id="views" type="text">
+            </li>
+            <li class="filter list-group-item">
+              <label for="category">Likes > Ex: 10000</label>
+              <input class="form-control" id="likes" type="text">
+            </li>
+            <li class="filter list-group-item">
+              <label for="date">Dislikes > Ex: 3000</label>
+              <input class="form-control" id="dislikes" type="text">
+            </li>
+            <li class="filter list-group-item">
+              <label for="views">Comments > Ex: 4000</label>
+              <input class="form-control" id="comments" type="text">
+            </li>
+            <li class="filter list-group-item">
+              <label for="views">Keyword Ex: Dog</label>
               <input class="form-control" id="title" type="text">
             </li>
             <li class="filter list-group-item">
-              <label for="category">Category Ex: blogs</label>
+              <label for="views">Subcribers > Ex: 4000</label>
+              <input class="form-control" id="subs" type="text">
+            </li>
+            <li class="filter list-group-item">
+              <label for="views">Category</label>
               <input class="form-control" id="category" type="text">
-            </li>
-            <li class="filter list-group-item">
-              <label for="date">Date Ex: 2017-11-13</label>
-              <input class="form-control" id="date" type="text">
-            </li>
-            <li class="filter list-group-item">
-              <label for="views">Views > Ex: 2000000</label>
-              <input class="form-control" id="views" type="text">
             </li>
           </ul>
         </div>
@@ -116,10 +128,11 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <h5 class="mb-4">This table shows some of the raw data columns and allows the user to filter by date, keyword, 
+          <h5 class="mb-4">This table shows some of the raw data columns and allows the user to filter by date, keyword,
             category and total number of views.</h5>
-          
-          <a href="https://www.kaggle.com/sgonkaggle/youtube-trend-with-subscriber">Click here </a><a>for original data source</a>
+
+          <a href="https://www.kaggle.com/sgonkaggle/youtube-trend-with-subscriber">Click here </a><a>for original data
+            source</a>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -131,18 +144,24 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Date</th>
                       <th>Views</th>
-                      <th>Title</th>
-                      <th>Category Description</th>
+                      <th>LIkes</th>
+                      <th>Dislikes</th>
+                      <th>Comments Count</th>
+                      <th>Video Title</th>
+                      <th>Subscribers</th>
+                      <th>Category</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Date</th>
                       <th>Views</th>
-                      <th>Title</th>
-                      <th>Category Description</th>
+                      <th>LIkes</th>
+                      <th>Dislikes</th>
+                      <th>Comments Count</th>
+                      <th>Video Title</th>
+                      <th>Subscribers</th>
+                      <th>Category</th>
                     </tr>
                   </tfoot>
                   <tbody>
