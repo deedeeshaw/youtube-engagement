@@ -48,35 +48,36 @@ def values():
         for video in videos:
             print(video[0])
         # total subscribera
-        subs = con.execute("select format(sum(subscriber), 2) from youtube")
+        subs = con.execute("select format(sum(subscriber), 0) from youtube")
         for sub in subs:
             print(sub[0])
         # total views
-        views = con.execute("select format(sum(views), 2) from youtube")
+        views = con.execute("select format(sum(views), 0) from youtube")
         for view in views:
             print(view[0])
         # total engagement
-        engages = con.execute("select format(sum(likes + dislikes + comment_count), 2) as engagement from youtube")
+        engages = con.execute("select format(sum(likes + dislikes + comment_count), 0) as engagement from youtube")
         for engage in engages:
             print(engage[0])
         
         ### Breakdown of Engagement metrics for bar graph
-        likes = con.execute("select format(sum(likes), 2) from youtube")
+        likes = con.execute("select sum(likes) from youtube")
         for like in likes:
             print(like[0])
-        dislikes =con.execute("select format(sum(dislikes), 2) from youtube")
+        dislikes =con.execute("select sum(dislikes) from youtube")
         for dislike in dislikes:
             print(dislike[0])
-        comments =con.execute("select format(sum(comment_count), 2) from youtube")
+        comments =con.execute("select sum(comment_count) from youtube")
         for comment in comments:
             print(comment[0])
 
-        values_dict = [{"cat_id": 0, "cat_desc": "All Categories", "videos": video[0], "subscribers": sub[0], "view": view[0], "engagement": engage[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0]}]
+        values_dict = [{"cat_id": 0, "cat_desc": "all categories", "videos": video[0], "subscribers": sub[0], "view": view[0],
+        "engagement": engage[0], "Likes": like[0], "Dislikes": dislike[0], "Comments": comment[0]}]
         # print(values_dict)
 
-        categories= con.execute('select category_id, category_desc, count(*) as videos, format(subscriber,2), \
-            format(views, 2), format(likes,2), format(dislikes,2), format(comment_count, 2),\
-            format(sum(likes + dislikes + comment_count), 2) as engagement\
+        categories= con.execute('select category_id, category_desc, count(*) as videos, format(subscriber, 0), \
+            format(views, 0), likes, dislikes, comment_count,\
+            format(sum(likes + dislikes + comment_count), 0) as engagement\
             from youtube group by category_id')
     
     session.close

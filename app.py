@@ -37,8 +37,8 @@ def index():
                                 "cat_desc": d["cat_desc"], "videos": d["videos"],\
                                 "subscribers": d["subscribers"], "view": d["view"], "engagement": d["engagement"],\
                                 "Likes": d["Likes"], "Dislikes": d["Dislikes"], "Comments": d["Comments"]})
-                                # print(d["cat_id"], d["cat_desc"], d["videos"], d["subscribers"])
-                                # print(youtube_data)
+                                print(d["cat_id"], d["cat_desc"], d["videos"], d["subscribers"], d["Likes"])
+                                print(youtube_data)
                 
         return render_template("index.html", yt_data=youtube_data, cat_table= category_table())
 

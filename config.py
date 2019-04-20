@@ -1,1 +1,1 @@
-config = "Artage0306"
+config = "OOkami098!"

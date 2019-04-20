@@ -240,7 +240,7 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                  <div class="dropdown no-arrow">
+                  <!--<div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
@@ -251,13 +251,13 @@
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                  </div>
+                  </div>-->
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="chart-area">
-                    <!--myAreaChart used for bar graph-->                      
-                    <canvas id="myAreaChart"></canvas>
+                    <!--myBarChart used for bar graph-->                      
+                    <canvas id="myBarChart"></canvas>
                   </div>          
                 </div>
               </div>
@@ -265,39 +265,39 @@
 
             <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Subscribers By Category</h6>
+                    <!--<div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>-->
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                      <canvas id="myPieChart"></canvas>
                     </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
-                    </span>
-                  </div>
+                    <!--<div class="mt-4 text-center small">
+                      <span class="mr-2">
+                        <i class="fas fa-circle text-primary"></i> Direct
+                      </span>
+                      <span class="mr-2">
+                        <i class="fas fa-circle text-success"></i> Social
+                      </span>
+                      <span class="mr-2">
+                        <i class="fas fa-circle text-info"></i> Referral
+                      </span>
+                    </div>-->
                 </div>
               </div>
             </div>
@@ -319,9 +319,10 @@
                   <p>Our story started when we decided to determine if there is a correlation between
                     number of youtube subscribers and how engaged they are with the videos. We defined engagement
                     as the sum of number of likes, dislikes ann comments. We hypothesised that the number of
-                    subscribers for a category is directly correlated to the engagement for that category. While you do 
-                    not have to be a subscriber to engage with a video when people subsctibe to a video channel they
-                    receive alerts and that may lead to higher engagement.
+                    subscribers for a category is directly correlated to the engagement for that category. In other words,
+                    the more subscribers you have, the more video views your content will get and therefore, the higher your engagement 
+                    is likely to be. While you do not have to be a subscriber to engage with a video when people subsctibe to a video channel they
+                    can receive alerts when new videos are published which may lead to higher engagement.
                   </p>
               
                 </div>
@@ -419,58 +420,276 @@
   <script src="{{url_for('static', filename='vendor/chart.js/Chart.min.js')}}"></script>
 
   <!-- Page level custom scripts -->
-  <script src="{{url_for('static', filename='js/demo/chart-area-demo.js')}}"></script>
-  <script src="{{url_for('static', filename='js/demo/chart-pie-demo.js')}}"></script>
+ <!-- <script src="{{url_for('static', filename='js/demo/chart-bar-demo.js')}}"></script>
+  <script src="{{url_for('static', filename='js/demo/chart-pie-demo.js')}}"></script> -->
 
 
-<!-- Bar Chart
+
 <script>
-      let myChart = document.getElementById('myAreaChart').getContext('2d');
-      let PrPopChart = new Chart(myChart, {
-        type:'bar', // This can be bar, horizontalBar, pie, line, doughnut, radar, polarArea
-        data:{
-          labels:['Likes', 'Dislikes', 'Comments'],
-     datasets:[{
-       label:'Engagements',
-       data:[
-       {{yt_data.Likes}}, 
-       {{yt_data.Dislikes}},
-       {{yt_data.Comments}}
-       ],
-       backgroundColor: 'green',
-       borderWidth: 1,
-       borderColor:'white',
-       hoverBorderWidth: 3,
-       hoverBorderColor: 'grey'
-     }]
-   },
-   options:{
-     title:{
-       display: true,
-       text: 'Engagement Breakdown',
-       fontSize:25
-     },
-     legend:{
-       display:false,
-       position:'bottom',
-       labels:{
-         fontColor: '#000'
-       }
-     },
-     layout:{
-       padding:{
-         left:50,
-         right:0,
-         bottom:0,
-         top:0
-       }
-     },
-     tooltips:{
-       enabled:true
-     }
-   }
- });
-</script> -->
+
+//bar chart script here
+// Bar Chart Example
+var ctx = document.getElementById("myBarChart");
+var myBarChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Likes', 'Dislikes', 'Comments'],
+    datasets: [{
+      label: "Engagements",
+      backgroundColor: "#1cc88a",
+      //hoverBackgroundColor: "Gray",
+      //borderColor: "Green",
+      data: [ '{{ yt_data.Likes }}', 
+        '{{ yt_data.Dislikes }}',
+        '{{ yt_data.Comments }}'
+      ],
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'Engagement Count'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false,
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        },
+        ticks: {
+          maxTicksLimit: 6
+        },
+        maxBarThickness: 25,
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          maxTicksLimit: 5,
+          padding: 10
+          // Include a dollar sign in the ticks
+          //callback: function(value, index, values) {
+            //return '$' + number_format(value);
+          }
+        },
+        //gridLines: {
+          
+        //}
+      ],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+  }
+});
+</script>
+
+
+<script>
+///////////////////////////////////////////////
+var catidname = {{yt_data.cat_id}};
+//var catidname="23";
+
+//window.alert (catidname);
+
+//create var
+var cl1="green";
+var cl2="red";
+var cl3="blue";
+var cl4="blue";
+var cl5="blue";
+var cl6="blue";
+var cl7="blue";
+var cl8="blue";
+var cl9="blue";
+
+//color graph
+switch(catidname) {
+  case 23:
+  cl1="#f6c23e";
+  cl2="gray";
+  cl3="gray";
+  cl4="gray";
+  cl5="gray";
+  cl6="gray";
+  cl7="gray";
+  cl8="gray";
+  cl9="gray";
+    break;
+  case 24:
+  cl1="gray";
+  cl2="#f6c23e";
+  cl3="gray";
+  cl4="gray";
+  cl5="gray";
+  cl6="gray";
+  cl7="gray";
+  cl8="gray";
+  cl9="gray";
+    break;
+  case 1:
+  cl1="gray";
+  cl2="gray";
+  cl3="#f6c23e";
+  cl4="gray";
+  cl5="gray";
+  cl6="gray";
+  cl7="gray";
+  cl8="gray";
+  cl9="gray";
+    break;
+  case 26:
+  cl1="gray";
+  cl2="gray";
+  cl3="gray";
+  cl4="#f6c23e";
+  cl5="gray";
+  cl6="gray";
+  cl7="gray";
+  cl8="gray";
+  cl9="gray";
+    break;  
+  case 10:
+  cl1="gray";
+  cl2="gray";
+  cl3="gray";
+  cl4="gray";
+  cl5="#f6c23e";
+  cl6="gray";
+  cl7="gray";
+  cl8="gray";
+  cl9="gray";
+    break;
+  case 25:
+  cl1="gray";
+  cl2="gray";
+  cl3="gray";
+  cl4="gray";
+  cl5="gray";
+  cl6="#f6c23e";
+  cl7="gray";
+  cl8="gray";
+  cl9="gray";
+  break;
+  case 22:
+  cl1="gray";
+  cl2="gray";
+  cl3="gray";
+  cl4="gray";
+  cl5="gray";
+  cl6="gray";
+  cl7="#f6c23e";
+  cl8="gray";
+  cl9="gray";
+    break;
+  case 28:
+  cl1="gray";
+  cl2="gray";
+  cl3="gray";
+  cl4="gray";
+  cl5="gray";
+  cl6="gray";
+  cl7="gray";
+  cl8="#f6c23e";
+  cl9="gray";
+    break;
+  case 17:
+  cl1="gray";
+  cl2="gray";
+  cl3="gray";
+  cl4="gray";
+  cl5="gray";
+  cl6="gray";
+  cl7="gray";
+  cl8="gray";
+  cl9="#f6c23e";
+    break;
+  default:
+  cl1="#f6c23e";
+  cl2="#f6c23e";
+  cl3="#f6c23e";
+  cl4="#f6c23e";
+  cl5="#f6c23e";
+  cl6="#f6c23e";
+  cl7="#f6c23e";
+  cl8="#f6c23e";
+  cl9="#f6c23e";
+}
+// Pie Graph
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Comedy", "Entertainment", "Film and Animation",
+    "How to & Style", "Music", "News & Politics",
+    "People & Blogs", "Science & Technology", "Sports"],
+    datasets: [{
+      data: [ 1804910088,
+        3312827833,
+        235994730,
+        616073744,
+        1761747379,
+        494781427,
+        774827914,
+        463883521,
+        549173857
+      //'{{ yt_data.comedysubcount }}',
+      //'{{ yt_data.entertainmentsubcount }}',
+      //'{{ yt_data.filmsubcount }}',
+      //'{{ yt_data.howtosubcount }}',
+      //'{{ yt_data.musicsubcount }}',
+      //'{{ yt_data.newssubcount }}',
+      //'{{ yt_data.blogsubcount }}',
+      //'{{ yt_data.techsubcount }}',
+      //'{{ yt_data.sportsubcount }}'
+      ],
+      backgroundColor: [cl1, cl2, cl3, cl4, cl5, cl6, cl7, cl8, cl9],
+      hoverBackgroundColor: [],
+      //hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+</script>
+
 
 </body>
 
