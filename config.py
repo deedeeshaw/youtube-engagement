@@ -1,1 +1,1 @@
-config = "OOkami098!"
+config = "Password Here"
